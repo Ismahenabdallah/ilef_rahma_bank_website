@@ -1,0 +1,227 @@
+<main>
+  <div class="container">
+    <section
+      class="section register min-vh-100 d-flex flex-column align-items-center justify-content-center py-4"
+    >
+      <div class="container">
+        <div class="row justify-content-center">
+          <div
+            class="col-lg-4 col-md-6 d-flex flex-column align-items-center justify-content-center"
+          >
+            <div class="d-flex justify-content-center py-4">
+              <a routerLink="/" class="logo d-flex align-items-center w-auto">
+              </a>
+            </div>
+            <div class="card mb-3">
+              <div class="card-body">
+                <div class="pt-4 pb-2">
+                  <h5 class="card-title text-center pb-0 fs-4">
+                    Create an Account
+                  </h5>
+                  <p class="text-center small">
+                    Enter your personal details to create account
+                  </p>
+                </div>
+                <form
+                  form
+                  [formGroup]="myForm"
+                  (ngSubmit)="onSubmit()"
+                  class="row g-3 needs-validation"
+                  novalidate
+                >
+                  <div class="col-12">
+                    <label for="yourName" class="form-label">FirstName:</label>
+                    <input
+                      type="text"
+                      formControlName="firstName"
+                      class="form-control"
+                      id="yourName"
+                      required
+                    />
+                    <div
+                      *ngIf="
+                        myForm.get('firstName')?.invalid &&
+                        (myForm.get('firstName')?.dirty ||
+                          myForm.get('firstName')?.touched)
+                      "
+                    >
+                      <div
+                        *ngIf="myForm.get('firstName')?.hasError('required')"
+                        [ngStyle]="{ color: 'red' }"
+                      >
+                        Name is required
+                      </div>
+                      <div
+                        *ngIf="myForm.get('firstName')?.hasError('maxlength')"
+                        [ngStyle]="{ color: 'red' }"
+                      >
+                        Name cannot be longer than 50 characters
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <label for="yourName" class="form-label">LastName:</label>
+                    <input
+                      type="text"
+                      formControlName="lastName"
+                      class="form-control"
+                      id="yourName"
+                      required
+                    />
+                    <div
+                      *ngIf="
+                        myForm.get('lastName')?.invalid &&
+                        (myForm.get('lastName')?.dirty ||
+                          myForm.get('lastName')?.touched)
+                      "
+                    >
+                      <div
+                        *ngIf="myForm.get('lastName')?.hasError('required')"
+                        [ngStyle]="{ color: 'red' }"
+                      >
+                        LastName is required
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-12">
+                    <label for="yourName" class="form-label">CIN:</label>
+                    <input
+                      type="text"
+                      formControlName="CIN"
+                      class="form-control"
+                      id="yourName"
+                      requiredCIN
+                    />
+                    <div
+                      *ngIf="
+                        myForm.get('CIN')?.invalid &&
+                        (myForm.get('CIN')?.dirty || myForm.get('CIN')?.touched)
+                      "
+                    >
+                      <div
+                        *ngIf="myForm.get('CIN')?.hasError('required')"
+                        [ngStyle]="{ color: 'red' }"
+                      >
+                        CIN is required
+                      </div>
+                      <div
+                      *ngIf="myForm.get('CIN')?.hasError('minlength')"
+                      [ngStyle]="{ color: 'red' }"
+                    >
+                      Password must be at least 8 characters long
+                    </div>
+                    <div
+                    *ngIf="myForm.get('CIN')?.hasError('maxlength')"
+                    [ngStyle]="{ color: 'red' }"
+                  >
+                    Password must be at least 8 characters long
+                  </div>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <label for="yourEmail" class="form-label">Your Email</label>
+                    <input
+                      type="email"
+                      formControlName="email"
+                      class="form-control"
+                      id="yourEmail"
+                      required
+                    />
+                    <div
+                      *ngIf="
+                        myForm.get('email')?.invalid &&
+                        (myForm.get('email')?.dirty ||
+                          myForm.get('email')?.touched)
+                      "
+                    >
+                      <div
+                        *ngIf="myForm.get('email')?.hasError('required')"
+                        [ngStyle]="{ color: 'red' }"
+                      >
+                        Email is required
+                      </div>
+                      <div
+                        *ngIf="myForm.get('email')?.hasError('email')"
+                        [ngStyle]="{ color: 'red' }"
+                      >
+                        Email is invalid
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <label for="yourPassword" class="form-label"
+                      >Password</label
+                    >
+                    <input
+                      type="password"
+                      formControlName="password"
+                      class="form-control"
+                      id="yourPassword"
+                      required
+                    />
+                    <div
+                      *ngIf="
+                        myForm.get('password')?.invalid &&
+                        (myForm.get('password')?.dirty ||
+                          myForm.get('password')?.touched)
+                      "
+                    >
+                      <div *ngIf="myForm.get('password')?.hasError('required')">
+                        Password is required
+                      </div>
+                      <div
+                        *ngIf="myForm.get('password')?.hasError('minlength')"
+                        [ngStyle]="{ color: 'red' }"
+                      >
+                        Password must be at least 6 characters long
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <label for="yourPassword" class="form-label">Confirm</label>
+                    <input
+                      type="password"
+                      formControlName="confirm"
+                      class="form-control"
+                      id="yourPassword"
+                      required
+                    />
+                    <div
+                      *ngIf="
+                        myForm.get('confirm')?.invalid &&
+                        (myForm.get('confirm')?.dirty ||
+                          myForm.get('confirm')?.touched)
+                      "
+                    >
+                      <div *ngIf="myForm.get('confirm')?.hasError('required')">
+                        confirm is required
+                      </div>
+                      <div
+                        *ngIf="myForm.get('confirm')?.hasError('minlength')"
+                        [ngStyle]="{ color: 'red' }"
+                      >
+                        confirm must be at least 6 characters long
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="col-12">
+                    <button class="btn btn-primary w-100" type="submit">
+                      Create Account
+                    </button>
+                  </div>
+                  <div class="col-12">
+                    <p class="small mb-0">
+                      Already have an account? <a routerLink="/login">Log in</a>
+                    </p>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>

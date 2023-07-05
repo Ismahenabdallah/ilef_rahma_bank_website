@@ -1,0 +1,177 @@
+<!-- <link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/css/all.min.css"
+integrity="sha256-2XFplPlrFClt0bIdPgpz8H7ojnk10H69xRqd9+uTShA="
+crossorigin="anonymous" /> -->
+
+<div class="container mt-5 mb-0">
+  <div class="row">
+    <div class="col-12">
+      <!-- Page title -->
+      <div class="my-5">
+        <h3>My Profile</h3>
+
+        <hr />
+      </div>
+      <!-- Form START -->
+      <form class="file-upload" #form="ngForm" (ngSubmit)="update(form)">
+        <div class="row mb-5 gx-5">
+          <!-- Contact detail -->
+          <div class="col-xxl-8 mb-5 mb-xxl-0">
+            <div class="bg-secondary-soft px-4 py-5 rounded">
+              <div class="row g-3">
+                <h4 class="mb-4 mt-0">Account detail</h4>
+                <!-- First Name -->
+
+                <!-- <div class=" alert alert-danger" *ngIf="(email.errors?.['required'] && email.touched)" >
+                remplir formulaire </div> -->
+
+                <div class="form-group">
+                  <label for="exampleFormControlInput1"> FirstName *</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    ngModel
+                    #firstName="ngModel"
+                    [(ngModel)]="dataUser.firstName"
+                    placeholder="firstName"
+                    required
+                    name="firstName"
+                    ngModel
+                  />
+                </div>
+
+                <div class="form-group">
+                  <label for="exampleFormControlInput1">LastName *</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    ngModel
+                    #lastName="ngModel"
+                    [(ngModel)]="dataUser.lastName"
+                    placeholder="lastName"
+                    required
+                    name="lastName"
+                    ngModel
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="exampleFormControlInput1">CIN *</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    ngModel
+                    #CIN="ngModel"
+                    [(ngModel)]="dataUser.CIN"
+                    placeholder="CIN"
+                    required
+                    name="CIN"
+                    ngModel
+                    disabled
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="exampleFormControlInput1">Email *</label>
+                  <input
+                    disabled
+                    type="email"
+                    class="form-control"
+                    ngModel
+                    #email="ngModel"
+                    [(ngModel)]="dataUser.email"
+                    placeholder="email"
+                    required
+                    name="email"
+                    ngModel
+                  />
+                </div>
+                <div class="form-group" *ngIf="refresh">
+                  <label for="exampleFormControlInput1">Solde_Cpt *</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    ngModel
+                    #Solde_Cpt="ngModel"
+                    [(ngModel)]="dataUser.Solde_Cpt"
+                    placeholder="Solde_Cpt"
+                    required
+                    name="Solde_Cpt"
+                    ngModel
+                  />
+                  <!-- <div
+                      *ngIf="
+                        myForm.get('Solde_Cpt')?.invalid &&
+                        (myForm.get('Solde_Cpt')?.dirty ||
+                          myForm.get('Solde_Cpt')?.touched)
+                      "
+                    >
+                      <div
+                        *ngIf="
+                          myForm.get('Solde_Cpt')?.hasError('required')
+                        "
+                        [ngStyle]="{ color: 'red' }"
+                      >
+                        Solde_Cpt is required
+                      </div>
+                    </div> -->
+                </div>
+                <div class="form-group" *ngIf="refresh">
+                  <label class="form-label">Type_Cpt </label>
+
+                  <select
+                    ngModel
+                    #Type_Cpt="ngModel"
+                    [(ngModel)]="dataUser.Type_Cpt"
+                    placeholder="Type_Cpt"
+                    required
+                    name="Type_Cpt"
+                    ngModel
+                    class="form-select"
+                    aria-label="Type_Cpt"
+                  >
+                    <option value="épargne">épargne</option>
+                    <option value="chéque">chéque</option>
+                  </select>
+                  <!-- <div
+                      *ngIf="
+                        myForm.get('Type_Cpt')?.invalid &&
+                        (myForm.get('Type_Cpt')?.dirty ||
+                          myForm.get('Type_Cpt')?.touched)
+                      "
+                    >
+                      <div
+                        *ngIf="
+                          myForm.get('Type_Cpt')?.hasError('required')
+                        "
+                      >
+                        Type_Cpt is required
+                      </div>
+                    </div> -->
+                </div>
+
+                <!-- compte bancaire -->
+              </div>
+              <!-- Row END -->
+            </div>
+          </div>
+        </div>
+        <!-- Row END -->
+
+        <!-- button -->
+        <div class="gap-3 d-md-flex justify-content-md-end text-center mb-3">
+          <button type="submit" class="btn btn-success btn-lg">
+            Update profile
+          </button>
+          <button
+            *ngIf="refresh"
+            type="button"
+            (click)="deleteMyAccount()"
+            class="btn btn-danger btn-lg"
+          >
+            Delete Account
+          </button>
+        </div>
+      </form>
+      <!-- Form END -->
+    </div>
+  </div>
+</div>

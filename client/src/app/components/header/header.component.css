@@ -1,0 +1,29 @@
+i:hover {
+  cursor: pointer;
+  color: #18d26e !important;
+}
+
+i {
+  color: #18d26e !important;
+}
+
+nav {
+  border-left-color: #18d26e;
+  background-color: #e8e3e3 !important;
+  border-left: 4px solid #18d26e;
+}
+nav a {
+  margin-right: 10px;
+  color: #18d26e !important;
+}
+nav a:hover {
+  color: #6bdb9f !important;
+}
+nav img {
+  width: 4rem;
+  margin-right: 10px;
+}
+nav .navbar-toggler {
+  background-color: white !important;
+  color: white !important;
+}/*# sourceMappingURL=header.component.css.map */

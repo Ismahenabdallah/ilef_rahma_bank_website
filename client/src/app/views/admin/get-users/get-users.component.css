@@ -1,0 +1,9 @@
+tr>th ,  label, ::placeholder{
+  text-transform: capitalize;
+
+}
+td{  cursor: pointer;}
+
+.modal-dialog{
+  width:100vh;
+}

@@ -1,0 +1,10 @@
+<div class="container-fluid" >
+  <div *ngIf="dataUser">
+    <h1>email :{{ dataUser.email }}</h1>
+  </div>
+  <div>
+    <div class="alert alert-danger" *ngIf="!dataUser && errormsg">
+      {{ errormsg }}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,408 @@
+<div class="container-fluid">
+  <div class="card shadow mb-4">
+    <div class="card-header py-3 flex">
+      <button
+        type="button"
+        class="btn btn-primary"
+        data-toggle="modal"
+        data-target="#exampleModalCenter"
+      >
+        <i class="fas fa-user-plus"></i> Add User
+      </button>
+    </div>
+    <div *ngIf="!hasClientUser">
+      <h1>No user</h1>
+    </div>
+    <div class="card-body" *ngIf="hasClientUser">
+      <!-- Topbar Search -->
+      <form
+        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search"
+      >
+        <div class="input-group">
+          <input type="text" [(ngModel)]="query" name="query" />
+          <div class="input-group-append">
+            <button class="btn btn-primary" type="button">
+              <i class="fas fa-search fa-sm"></i>
+            </button>
+          </div>
+        </div>
+      </form>
+      <div class="table-responsive">
+        <table
+          class="table table-hover table-striped table-borderless table-light table-bordered"
+          id="dataTable"
+          width="100%"
+          cellspacing="0"
+        >
+          <thead>
+            <tr>
+              <th>Email</th>
+              <th>firstName</th>
+              <th>lastName</th>
+
+              <th>CIN</th>
+              <th>isAdmin</th>
+              <th>role</th>
+              <th>Action</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr *ngFor="let item of users | search : query; let i = index">
+              <td (click)="details(item._id)" *ngIf="item.role == 'User'">
+                {{ item.email }}
+              </td>
+              <td (click)="details(item._id)" *ngIf="item.role == 'User'">
+                {{ item.firstName }}
+              </td>
+              <td (click)="details(item._id)" *ngIf="item.role == 'User'">
+                {{ item.lastName }}
+              </td>
+
+              <td (click)="details(item._id)" *ngIf="item.role == 'User'">
+                {{ item.CIN }}
+              </td>
+              <td (click)="details(item._id)" *ngIf="item.role == 'User'">
+                {{ item.isAdmin }}
+              </td>
+              <td (click)="details(item._id)" *ngIf="item.role == 'User'">
+                {{ item.role }}
+              </td>
+              <td *ngIf="item.role == 'User'" class="flex">
+                <button
+                  style="margin-right: 10px"
+                  (click)="getbyid(item._id)"
+                  class="btn btn-success"
+                  data-toggle="modal"
+                  data-target="#exampleModal"
+                >
+                  <i class="fas fa-edit"></i>
+                </button>
+                <button
+                  style="margin-left: 10px"
+                  (click)="Del(item._id, i)"
+                  class="btn btn-danger"
+                >
+                  <i class="fas fa-trash"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- Button trigger modal -->
+
+    <!-- add Modal -->
+    <div
+      class="modal fade"
+      id="exampleModalCenter"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalCenterTitle">Add User</h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="container">
+              <form
+                form
+                [formGroup]="myForm"
+                (ngSubmit)="Add()"
+                class="row g-3 needs-validation"
+                novalidate
+              >
+                <div class="col-12">
+                  <label for="yourName" class="form-label">FirstName:</label>
+                  <input
+                    type="text"
+                    formControlName="firstName"
+                    class="form-control"
+                    id="yourName"
+                    required
+                  />
+                  <div
+                    *ngIf="
+                      myForm.get('firstName')?.invalid &&
+                      (myForm.get('firstName')?.dirty ||
+                        myForm.get('firstName')?.touched)
+                    "
+                  >
+                    <div
+                      *ngIf="myForm.get('firstName')?.hasError('required')"
+                      [ngStyle]="{ color: 'red' }"
+                    >
+                      Name is required
+                    </div>
+                    <div
+                      *ngIf="myForm.get('firstName')?.hasError('maxlength')"
+                      [ngStyle]="{ color: 'red' }"
+                    >
+                      Name cannot be longer than 50 characters
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <label for="yourName" class="form-label">LastName:</label>
+                  <input
+                    type="text"
+                    formControlName="lastName"
+                    class="form-control"
+                    id="yourName"
+                    required
+                  />
+                  <div
+                    *ngIf="
+                      myForm.get('lastName')?.invalid &&
+                      (myForm.get('lastName')?.dirty ||
+                        myForm.get('lastName')?.touched)
+                    "
+                  >
+                    <div
+                      *ngIf="myForm.get('lastName')?.hasError('required')"
+                      [ngStyle]="{ color: 'red' }"
+                    >
+                      LastName is required
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12">
+                  <label for="yourName" class="form-label">CIN:</label>
+                  <input
+                    type="text"
+                    formControlName="CIN"
+                    class="form-control"
+                    id="yourName"
+                    requiredCIN
+                  />
+                  <div
+                    *ngIf="
+                      myForm.get('CIN')?.invalid &&
+                      (myForm.get('CIN')?.dirty || myForm.get('CIN')?.touched)
+                    "
+                  >
+                    <div
+                      *ngIf="myForm.get('CIN')?.hasError('required')"
+                      [ngStyle]="{ color: 'red' }"
+                    >
+                      CIN is required
+                    </div>
+                    <div
+                      *ngIf="myForm.get('CIN')?.hasError('minlength')"
+                      [ngStyle]="{ color: 'red' }"
+                    >
+                      Password must be at least 8 characters long
+                    </div>
+                    <div
+                      *ngIf="myForm.get('CIN')?.hasError('maxlength')"
+                      [ngStyle]="{ color: 'red' }"
+                    >
+                      Password must be at least 8 characters long
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <label for="yourEmail" class="form-label">Your Email</label>
+                  <input
+                    type="email"
+                    formControlName="email"
+                    class="form-control"
+                    id="yourEmail"
+                    required
+                  />
+                  <div
+                    *ngIf="
+                      myForm.get('email')?.invalid &&
+                      (myForm.get('email')?.dirty ||
+                        myForm.get('email')?.touched)
+                    "
+                  >
+                    <div
+                      *ngIf="myForm.get('email')?.hasError('required')"
+                      [ngStyle]="{ color: 'red' }"
+                    >
+                      Email is required
+                    </div>
+                    <div
+                      *ngIf="myForm.get('email')?.hasError('email')"
+                      [ngStyle]="{ color: 'red' }"
+                    >
+                      Email is invalid
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <label for="yourPassword" class="form-label">Password</label>
+                  <input
+                    type="password"
+                    formControlName="password"
+                    class="form-control"
+                    id="yourPassword"
+                    required
+                  />
+                  <div
+                    *ngIf="
+                      myForm.get('password')?.invalid &&
+                      (myForm.get('password')?.dirty ||
+                        myForm.get('password')?.touched)
+                    "
+                  >
+                    <div *ngIf="myForm.get('password')?.hasError('required')">
+                      Password is required
+                    </div>
+                    <div
+                      *ngIf="myForm.get('password')?.hasError('minlength')"
+                      [ngStyle]="{ color: 'red' }"
+                    >
+                      Password must be at least 6 characters long
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12">
+                  <label for="yourPassword" class="form-label">Confirm</label>
+                  <input
+                    type="password"
+                    formControlName="confirm"
+                    class="form-control"
+                    id="yourPassword"
+                    required
+                  />
+                  <div
+                    *ngIf="
+                      myForm.get('confirm')?.invalid &&
+                      (myForm.get('confirm')?.dirty ||
+                        myForm.get('confirm')?.touched)
+                    "
+                  >
+                    <div *ngIf="myForm.get('confirm')?.hasError('required')">
+                      confirm is required
+                    </div>
+                    <div
+                      *ngIf="myForm.get('confirm')?.hasError('minlength')"
+                      [ngStyle]="{ color: 'red' }"
+                    >
+                      confirm must be at least 6 characters long
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-12">
+                  <button class="btn btn-primary w-100" type="submit">
+                    Create Account
+                  </button>
+                </div>
+                <div class="col-12">
+                  <p class="small mb-0">
+                    Already have an account? <a routerLink="/login">Log in</a>
+                  </p>
+                </div>
+              </form>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- add Model -->
+    <!-- update Model-->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      role="dialog"
+      aria-labelledby="exampleModalCenterTitle"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalCenterTitle">
+              Update User
+            </h5>
+            <button
+              type="button"
+              class="close"
+              data-dismiss="modal"
+              aria-label="Close"
+            >
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <form #form="ngForm" (ngSubmit)="update(form)">
+              <!-- <div class=" alert alert-danger" *ngIf="(email.errors?.['required'] && email.touched)" >
+            remplir formulaire </div> -->
+
+              <div class="form-group">
+                <label for="exampleFormControlInput1">firstName</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  ngModel
+                  #firstName="ngModel"
+                  [(ngModel)]="dataUser.firstName"
+                  placeholder="firstName"
+                  required
+                  name="firstName"
+                  ngModel
+                />
+              </div>
+
+              <div class="form-group">
+                <label for="exampleFormControlInput1">lastName</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  ngModel
+                  #lastName="ngModel"
+                  [(ngModel)]="dataUser.lastName"
+                  placeholder="lastName"
+                  required
+                  name="lastName"
+                  ngModel
+                />
+              </div>
+
+              <!-- <div class="alert alert-danger" *ngIf="messageError">
+              {{messageError}}
+            </div> -->
+
+              <button class="btn btn-primary">update User</button>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-dismiss="modal"
+            >
+              Close
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!--end update Model -->
+  </div>
+</div>

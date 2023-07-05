@@ -1,0 +1,34 @@
+<app-header
+  *ngIf="
+    !(
+      router.url === '/register' ||
+      router.url === '/login' ||
+      router.url === '/error404'
+    ) && !(auth?.getRole() === 'Admin')
+  "
+></app-header>
+
+<app-home
+  *ngIf="
+    !(
+      router.url === '/register' ||
+      router.url === '/login' ||
+      router.url === '/error404' ||
+      router.url === '/user/profil'
+    ) &&
+    !(auth?.getRole() === 'Admin') &&
+    !(auth?.getRole() === 'User')
+  "
+></app-home>
+<app-help-support></app-help-support>
+<router-outlet></router-outlet>
+
+<app-footer
+  *ngIf="
+    !(
+      router.url === '/register' ||
+      router.url === '/login' ||
+      router.url === '/error404'
+    ) && !(auth?.getRole() === 'Admin')
+  "
+></app-footer>

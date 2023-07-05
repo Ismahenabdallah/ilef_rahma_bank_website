@@ -1,0 +1,33 @@
+i:hover{
+ cursor: pointer;
+ color : #18d26e !important;
+}
+i{
+
+  color : #18d26e !important;
+ }
+nav{
+
+  border-left-color:#18d26e ;
+  background-color: #e8e3e3 !important ;
+  border-left: 4px solid #18d26e;
+
+  a {
+    margin-right: 10px;
+      color: #18d26e !important;
+      &:hover{
+        color:#6bdb9f !important;
+      }
+  }
+  img{
+    width: 4rem;
+    margin-right: 10px;
+  }
+  .navbar-toggler{
+    background-color: white !important;
+    color: white !important;
+  }
+
+
+}
+

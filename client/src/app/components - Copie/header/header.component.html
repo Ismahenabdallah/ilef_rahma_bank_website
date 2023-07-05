@@ -1,0 +1,78 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light p-4 fixed-top">
+  <div class="d-flex align-items-center justify-content-between">
+    <img src="assets/img/logo.png" alt="" />
+  </div>
+
+  <a
+    *ngIf="share.LoggedIn() && share.getRole() === 'User'"
+    class="navbar-brand"
+    routerLink="/user"
+    >STB BANQUE</a
+  >
+  <a
+    *ngIf="share.LoggedIn() && share.getRole() === 'Admin'"
+    class="navbar-brand"
+    routerLink="/admin"
+    >STB BANQUE</a
+  >
+  <a *ngIf="!share.LoggedIn()" class="navbar-brand" routerLink="/"
+    >STB BANQUE</a
+  >
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarSupportedContent"
+    aria-controls="navbarSupportedContent"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" routerLink="/" *ngIf="!share.LoggedIn()">Home </a>
+      </li>
+      <li class="nav-item active">
+        <a
+          class="nav-link"
+          routerLink="/user/account"
+          *ngIf="share.LoggedIn() && share.getRole() === 'User'"
+          >My Account
+        </a>
+      </li>
+      <li class="nav-item active">
+        <a
+          class="nav-link"
+          routerLink="/user/demande"
+          *ngIf="share.LoggedIn() && share.getRole() === 'User' && refresh"
+          >Credit Request
+        </a>
+      </li>
+
+      <li class="nav-item" *ngIf="!share.LoggedIn()">
+        <a class="nav-link" routerLink="/login">login</a>
+      </li>
+      <li class="nav-item" *ngIf="!share.LoggedIn()">
+        <a class="nav-link" routerLink="/register">register</a>
+      </li>
+      <!-- <li
+        class="nav-item"
+        *ngIf="share.LoggedIn() && share.getRole() === 'User'"
+      >
+        <a class="nav-link" routerLink="/user/profil">profil</a>
+      </li> -->
+    </ul>
+    <div class="d-flex">
+      <div *ngIf="share.LoggedIn()">
+        <i
+          (click)="logout()"
+          class="bi bi-box-arrow-right"
+          style="color: white; font-size: 30px"
+        ></i>
+      </div>
+    </div>
+  </div>
+</nav>

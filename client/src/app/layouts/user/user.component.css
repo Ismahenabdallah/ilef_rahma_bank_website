@@ -1,0 +1,57 @@
+/*--------------------------------------------------------------
+# hero1 Section
+--------------------------------------------------------------*/
+#hero1 {
+  width: 100%;
+
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: right top;
+  margin-top: 40px;
+  /* padding: 60px 0; */
+}
+img {
+  width: 50vhpx;
+  height: 300px;
+  object-fit: cover;
+}
+#hero1 h1 {
+  margin: 0 0 20px 0;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 56px;
+  color: #364146;
+}
+em{
+ color : #18d26e !important;
+}
+#hero1 h2 {
+  color: #576971;
+  margin-bottom: 30px;
+  font-size: 24px;
+}
+
+#hero1 .hero1-img {
+  text-align: center;
+}
+
+@media (min-width: 1024px) {
+  #hero1 {
+    background-attachment: fixed;
+  }
+}
+
+@media (max-width: 992px) {
+  #hero1 h1 {
+    font-size: 32px;
+    line-height: 40px;
+  }
+
+  #hero1 h2 {
+    font-size: 20px;
+
+  }
+  .account {
+    margin-top:-20%;
+  }
+}
